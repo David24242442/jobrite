@@ -1,0 +1,165 @@
+<!-- Fixed navbar with working mobile menu toggle -->
+<nav class="fixed w-full z-50 bg-white shadow-lg">
+  <div class="nav_container flex justify-between items-center p-4 mx-auto max-w-7xl">
+    <!-- Logo -->
+    <div class="logo flex items-center text-3xl md:text-4xl lg:text-6xl font-bold font-serif pl-2 md:pl-4 lg:pl-0 relative right-10">
+      <a [routerLink]="['/home']" class="ml-3 md:ml-0">
+        <span class="text-blue-600">JOB</span>
+        <span class="text-gray-900">RITE</span>
+      </a>
+    </div>
+
+    <!-- Hamburger Menu Button -->
+    <div class="lg:hidden">
+      <button (click)="toggleMobileMenu()" aria-label="Toggle Mobile Menu" class="focus:outline-none">
+        <i class="pi pi-bars text-2xl text-gray-700 hover:text-blue-600 transition duration-200"></i>
+      </button>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden lg:flex items-center justify-between flex-1 ml-12">
+      <ul class="flex items-center space-x-6 xl:space-x-20 text-lg relative left-14">
+        <li>
+          <a [routerLink]="['/home']" routerLinkActive="text-blue-600 font-semibold" [routerLinkActiveOptions]="{ exact: true }" class="text-gray-700 hover:text-blue-600 hover:underline transition duration-800 hover:font-semibold">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/about']" routerLinkActive="text-blue-600 font-semibold" [routerLinkActiveOptions]="{ exact: true }" class="text-gray-700 hover:text-blue-600 hover:underline transition duration-800 hover:font-semibold">About</a>
+        </li>
+        <li>
+          <a [routerLink]="['/services']" routerLinkActive="text-blue-600 font-semibold" [routerLinkActiveOptions]="{ exact: true }" class="text-gray-700 hover:text-blue-600 hover:underline transition duration-800 hover:font-semibold">Services</a>
+        </li>
+        <li>
+          <a [routerLink]="['/contact']" routerLinkActive="text-blue-600 font-semibold" [routerLinkActiveOptions]="{ exact: true }" class="text-gray-700 hover:text-blue-600 hover:underline transition duration-800 hover:font-semibold">Contact</a>
+        </li>
+      </ul>
+
+      <div class="nav_buttons flex items-center space-x-4">
+        <button class="button">Login</button>
+        <button class="button">Register</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div [@slideInOut]="isMobileMenuOpen ? 'in' : 'out'" class="lg:hidden bg-white shadow-md overflow-hidden">
+    <div class="container mx-auto px-6 py-4">
+      <ul class="space-y-4">
+        <li><a [routerLink]="['/home']" (click)="toggleMobileMenu()" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Home</a></li>
+        <li><a [routerLink]="['/about']" (click)="toggleMobileMenu()" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">About</a></li>
+        <li><a [routerLink]="['/services']" (click)="toggleMobileMenu()" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Services</a></li>
+        <li><a [routerLink]="['/contact']" (click)="toggleMobileMenu()" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Contact</a></li>
+      </ul>
+
+      <div class="flex flex-col space-y-4 mt-6">
+        <button class="button w-full">Login</button>
+        <button class="button w-full">Register</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="relative bg-gray-100 h-screen overflow-hidden">
+
+  <!-- Background Image -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-50 z-0"
+       style="background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGpvYnxlbnwwfHx8fDE2OTI3NzY5NTg&ixlib=rb-4.0.3&q=80&w=1080');">
+  </div>
+
+  <!-- Why JobRite Header (Overlay) -->
+  <div class="absolute top-36 w-4/11 h-10/12 z-10 flex justify-start px-4">
+    <div class="text-center p-8 rounded-lg max-w-2xl text-black ">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-4"> Why JobRite</h2><br/><span class="text-3xl lg:text-4xl font-bold mb-4">
+      <span class="text-blue-500">JobRite</span>
+      <span class="text-gray-900"> is the best place to find your dream job</span>
+    </span>
+
+      <p class="text-lg mb-6 mt-6">We connect you with top employers</p>
+      <br/>
+
+      <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded">Learn More</button>
+    </div>
+  </div>
+
+    <!-- location and date -->
+  <form action="/search" method="get"
+        class="absolute bottom-12 w-11/12 md:w-4/12 z-20 flex flex-col items-center px-4 shadow-xl rounded-xl bg-white mx-8 max-w-2xl">
+
+    <!-- Top inputs row -->
+    <div class="flex flex-col md:flex-row items-center justify-between w-full p-4 gap-4">
+
+      <!-- Destination -->
+      <div class="flex flex-col items-center w-full">
+        <h5 class="text-2xl lg:text-3xl font-bold mb-2">Destination</h5>
+        <div class="flex items-center gap-2 w-full">
+        <span class="bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-2 rounded-lg">
+          <i class="ri-map-pin-fill"></i>
+        </span>
+          <input type="text" name="location" placeholder="Kaneshie"
+                 class="px-4 py-2 rounded-lg border border-gray-300 w-full">
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="flex flex-col items-center w-full">
+        <h5 class="text-2xl lg:text-3xl font-bold mb-2">Date</h5>
+        <div class="flex items-center gap-2 w-full">
+        <span class="bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-2 rounded-lg">
+          <i class="ri-calendar-2-line"></i>
+        </span>
+          <input type="text" name="date" placeholder="5 May 2025"
+                 class="px-4 py-2 rounded-lg border border-gray-300 w-full">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Search Button underneath -->
+    <button type="submit"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded w-full mb-4">
+      Search
+    </button>
+  </form>
+
+
+
+  <!-- Hero Section -->
+  <div class="relative h-60 flex items-start justify-center z-0 top-30">
+    <div class="container mx-auto text-center text-black z-10">
+      <h1 class="text-4xl lg:text-5xl font-bold mb-4">Welcome to JobRite</h1>
+      <p class="text-lg mb-8">Find the perfect job for you</p>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Get Started</button>
+    </div>
+  </div>
+
+  <!-- Lottie Animation -->
+  <div class="absolute bottom-0 right-0 flex justify-end items-end w-full pr-4 lg:pr-4 z-10">
+    <dotlottie-player
+      src="https://lottie.host/4f6ea913-57c7-442f-8647-1f9824e47865/556JVrL0WB.lottie"
+      background="transparent"
+      speed="0.5"
+      class="w-[110vw] h-[60vw] lg:w-[100vw] lg:h-[60vw] max-w-[900px] max-h-[800px]"
+      loop
+      autoplay>
+    </dotlottie-player>
+  </div>
+
+</section>
+
+<!-- Features Section -->
+<div class="container mx-auto text-center py-16">
+  <h2 class="text-3xl font-bold mb-8">Why Choose Us?</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+      <h3 class="text-xl font-semibold mb-4">Feature 1</h3>
+      <p class="text-gray-700">Description of feature 1.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+      <h3 class="text-xl font-semibold mb-4">Feature 2</h3>
+      <p class="text-gray-700">Description of feature 2.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+      <h3 class="text-xl font-semibold mb-4">Feature 3</h3>
+      <p class="text-gray-700">Description of feature 3.</p>
+    </div>
+  </div>
+</div>
